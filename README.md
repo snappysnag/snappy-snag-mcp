@@ -34,9 +34,13 @@ With the **SnappySnag MCP Server**, your AI coding agent (in Cursor, Windsurf, C
 
 ## 🚀 Quick Start / Configuration
 
-SnappySnag provides a high-performance **Streamable HTTP (Remote SSE)** MCP server. No local Node.js or Python runtime is required!
+SnappySnag supports two connection options:
+1. **Option A (Command / stdio with Demo Mode)**: Runs locally via standard MCP stdio. If no key is provided, an interactive **Demo Mode** with mock Flutter bug tickets is activated!
+2. **Option B (Remote SSE / Streamable HTTP)**: Connects directly to SnappySnag's hosted endpoint without any local dependencies.
 
-### 1. Get your MCP Secret Key
+---
+
+### 1. Get your MCP Secret Key (Optional for Demo)
 1. Sign in to your [SnappySnag Dashboard](https://snappysnag.com/dashboard).
 2. Open **Project Settings** (gear icon) -> **Integrations** or **MCP** tab.
 3. Click **Generate MCP Secret Key** and copy your key (`snag_mcp_...`).
@@ -45,9 +49,38 @@ SnappySnag provides a high-performance **Streamable HTTP (Remote SSE)** MCP serv
 
 ### 2. Configure Your AI Editor
 
-#### 🔹 Cursor
-Add the following to `.cursor/mcp.json` in your project root (or global Cursor Settings -> MCP):
+#### 🔹 Option A: Command / stdio (`npx` or local build)
 
+##### Cursor (`.cursor/mcp.json`)
+```json
+{
+  "mcpServers": {
+    "snappysnag": {
+      "command": "node",
+      "args": ["path/to/snappy-snag-mcp/dist/index.js", "--key=YOUR_MCP_SECRET_KEY"]
+    }
+  }
+}
+```
+*(Tip: Omit `--key` or set `--key=demo` to test with demo data!)*
+
+##### Claude Desktop (`claude_desktop_config.json`)
+```json
+{
+  "mcpServers": {
+    "snappysnag": {
+      "command": "node",
+      "args": ["path/to/snappy-snag-mcp/dist/index.js", "--key=YOUR_MCP_SECRET_KEY"]
+    }
+  }
+}
+```
+
+---
+
+#### 🔹 Option B: Streamable HTTP (Remote SSE)
+
+##### Cursor (`.cursor/mcp.json`)
 ```json
 {
   "mcpServers": {
@@ -61,9 +94,7 @@ Add the following to `.cursor/mcp.json` in your project root (or global Cursor S
 }
 ```
 
-#### 🔹 Windsurf
-Add to `~/.codeium/windsurf/mcp_config.json`:
-
+##### Windsurf (`~/.codeium/windsurf/mcp_config.json`)
 ```json
 {
   "mcpServers": {
@@ -72,26 +103,6 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
       "headers": {
         "Authorization": "Bearer YOUR_MCP_SECRET_KEY"
       }
-    }
-  }
-}
-```
-
-#### 🔹 Claude Desktop (or environments requiring command bridge)
-If your client environment requires a local process, you can use `curl` or a lightweight SSE bridge:
-
-```json
-{
-  "mcpServers": {
-    "snappysnag": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://snappysnag.com/api/mcp",
-        "--header",
-        "Authorization: Bearer YOUR_MCP_SECRET_KEY"
-      ]
     }
   }
 }

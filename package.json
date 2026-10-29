@@ -1,0 +1,46 @@
+{
+  "name": "@snappysnag/mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol (MCP) server for SnappySnag — Streamline Flutter in-app bug fixing, screen diagnostics, and user feedback in Cursor, Windsurf, & Claude.",
+  "main": "dist/index.js",
+  "bin": {
+    "snappysnag-mcp": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc -w",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "snappysnag",
+    "flutter",
+    "bug-tracking",
+    "cursor",
+    "claude",
+    "windsurf"
+  ],
+  "author": "SnappySnag",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snappysnag/snappy-snag-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snappysnag/snappy-snag-mcp/issues"
+  },
+  "homepage": "https://snappysnag.com",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "typescript": "^5.7.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
