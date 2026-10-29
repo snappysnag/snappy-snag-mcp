@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.snappysnag/snappysnag",
+  "title": "SnappySnag",
+  "description": "Flutter in-app bug tracking, visual pin annotations, and device logs directly into your AI IDE.",
+  "repository": {
+    "url": "https://github.com/snappysnag/snappy-snag-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://snappysnag.com/api/mcp"
+    }
+  ]
+}
