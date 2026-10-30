@@ -102,6 +102,12 @@ const DEMO_FEEDBACK_ITEMS = [
     ai_suggestion:
       "Wrap the checkout column in a `SingleChildScrollView` or use `SafeArea` + `Expanded` to prevent bottom overflow when the on-screen keyboard appears.",
     target_widget: "lib/features/cart/presentation/cart_checkout_screen.dart",
+    breadcrumbs: [
+      { category: "navigation", message: "push: /home" },
+      { category: "action", message: "tap: 'View Cart' Button" },
+      { category: "navigation", message: "push: /home -> /cart" },
+      { category: "action", message: "tap: 'Apply Coupon' TextField" },
+    ],
   },
   {
     id: "demo-fb-002",
@@ -380,7 +386,7 @@ Device: ${item.device_model} (${item.os_name} ${item.os_version})
 
 Active Pins (${item.pins.length}):
 ${item.pins.map((p) => `  • Pin #${p.number}: "${p.comment}" (Pos: ${p.x_ratio}, ${p.y_ratio})`).join("\n")}
-
+${(item as any).breadcrumbs && (item as any).breadcrumbs.length > 0 ? `\nUser Breadcrumbs (${(item as any).breadcrumbs.length} steps):\n${(item as any).breadcrumbs.map((b: any, idx: number) => `  ${idx + 1}. [${b.category}] ${b.message}`).join("\n")}\n` : ""}
 AI Suggested Fix:
 ${item.ai_suggestion}
 `.trim();
